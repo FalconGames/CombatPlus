@@ -1,0 +1,9 @@
+name: CombatPlus
+main: com.Github.Malatak1.CombatPlus.CombatPlus
+version: 0.1
+commands:
+   spell:
+      description: This is a temporary command.
+      usage: /<command>
+      permission: combatplus.spell
+      permission-message: You don't have <permission>
