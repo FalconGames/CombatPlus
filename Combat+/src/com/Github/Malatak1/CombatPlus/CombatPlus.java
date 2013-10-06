@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.block.Block;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -16,13 +17,15 @@ import com.Github.Malatak1.CombatPlus.Listeners.SprintListener;
 import com.Github.Malatak1.CombatPlus.Listeners.PlayerInteractListener;
 import com.Github.Malatak1.CombatPlus.Util.IconMenu;
 import com.Github.Malatak1.CombatPlus.Util.SpellSelectHandler;
+import com.Github.Malatak1.CombatPlus.Util.IconMenu.OptionClickEvent;
 import com.Github.Malatak1.CombatPlus.Runnables.Regenerator;
 
 public class CombatPlus extends JavaPlugin {
 	
     public HashMap<String, String> spellSelected = new HashMap<>();
-    public static IconMenu menu;
+    public static IconMenu menu, raceselect, classselect, skilltree;
     private static CombatPlus instance;
+    private static Player p;
     
     @Override
     public void onEnable(){
@@ -60,6 +63,35 @@ public class CombatPlus extends JavaPlugin {
     	.setOption(15, new ItemStack(Material.WEB, 1), "Entangle", "Trap your enemy in the strands of a magical web.")
     	.setOption(16, new ItemStack(Material.ARROW, 1), "Magical Barrage", "Shoot your enemies with a powerful volley of magical darts.");
     	
+    	raceselect = new IconMenu("Character Customizer: Pick your race!", 3, new IconMenu.OptionClickEventHandler() {
+			
+			@Override
+			public void onOptionClick(OptionClickEvent event) {
+				
+				event.setWillClose(true);
+				classselect.open(p);
+				
+			}
+		}, this)
+    	
+    	.setOption(0, new ItemStack(Material.WRITTEN_BOOK, 1), "Elf", "Fast and Wise, the Elf is gifted in magical abilities.")
+    	.setOption(1, new ItemStack(Material.DIAMOND_AXE, 1), "Dwarf", "Strongest of all races, the Dwarf excels in combat.")
+    	.setOption(2, new ItemStack(Material.WORKBENCH, 1), "Human", "Craftier than others, the Human is a natural survivalist.");
+    	
+    	classselect = new IconMenu("Character Customizer: Pick your class!", 3, new IconMenu.OptionClickEventHandler() {
+			
+			@Override
+			public void onOptionClick(OptionClickEvent event) {
+				
+				event.setWillClose(true);
+				
+			}
+		}, this)
+    	
+    	.setOption(0, new ItemStack(Material.BOW, 1), "Archer", "A skilled bowman.")
+    	.setOption(1, new ItemStack(Material.DIAMOND_SWORD, 1), "Warrior", "A strong fighter.")
+    	.setOption(2, new ItemStack(Material.BLAZE_ROD, 1), "Mage", "A powerful wizard.");
+    	
     	Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new Regenerator(), 100, 40);
     	
     }
@@ -85,6 +117,11 @@ public class CombatPlus extends JavaPlugin {
     
     public static void openMenu(Player player) {
     	menu.open(player);
+    }
+    
+    public static void openCharacterCustomizer(Player player){
+    	p = player;
+    	raceselect.open(player);
     }
     
 }

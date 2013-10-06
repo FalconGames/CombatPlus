@@ -4,7 +4,7 @@ public class Class {
 
 	enum Classes{
 		
-		WARRIOR, MAGE, ROGUE;
+		WARRIOR, MAGE, ARCHER;
 		
 	}
 	

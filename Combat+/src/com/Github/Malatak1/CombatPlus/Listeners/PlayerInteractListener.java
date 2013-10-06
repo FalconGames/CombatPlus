@@ -31,6 +31,9 @@ public class PlayerInteractListener implements Listener {
     			if (bookMeta.getDisplayName().equals("Spell Book")) {
 					CombatPlus.openMenu(event.getPlayer());
         		}
+    			if (bookMeta.getDisplayName().equals("Character Customizer")){
+    				CombatPlus.openCharacterCustomizer(event.getPlayer());
+    			}
         	}
         	if (event.getPlayer().getItemInHand().getType() == Material.ARROW) {
         		

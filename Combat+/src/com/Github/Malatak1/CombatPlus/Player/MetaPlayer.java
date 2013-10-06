@@ -15,10 +15,22 @@ public class MetaPlayer implements Serializable{
 	
 	public MetaPlayer(Player p, SkillTree st, Class c, Race r){
 		
-		this. p = p;
+		this.p = p;
 		this.st = st;
 		this.c = c;
 		this.r = r;
+		
+	}
+
+	public int getSkillLevel(Skill.Skills skill){
+		
+		return st.getLevel(skill);
+		
+	}
+	
+	public void levelUpSkill(Skill.Skills skill){
+		
+		st.levelUp(skill);
 		
 	}
 	
