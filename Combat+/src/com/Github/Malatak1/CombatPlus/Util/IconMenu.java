@@ -42,7 +42,7 @@ public class IconMenu implements Listener {
     
     public IconMenu setOption(int position, ItemStack icon) {
         optionNames[position] = name;
-        optionIcons[position] = null;
+        optionIcons[position] = icon;
         return this;
     }
    
