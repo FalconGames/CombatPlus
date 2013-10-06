@@ -18,6 +18,11 @@ import com.Github.Malatak1.CombatPlus.Listeners.PlayerInteractListener;
 import com.Github.Malatak1.CombatPlus.Util.IconMenu;
 import com.Github.Malatak1.CombatPlus.Util.SpellSelectHandler;
 import com.Github.Malatak1.CombatPlus.Util.IconMenu.OptionClickEvent;
+import com.Github.Malatak1.CombatPlus.Player.Class.Classes;
+import com.Github.Malatak1.CombatPlus.Player.MetaPlayer;
+import com.Github.Malatak1.CombatPlus.Player.Race;
+import com.Github.Malatak1.CombatPlus.Player.Race.Races;
+import com.Github.Malatak1.CombatPlus.Player.SkillTree;
 import com.Github.Malatak1.CombatPlus.Runnables.Regenerator;
 
 public class CombatPlus extends JavaPlugin {
@@ -25,7 +30,8 @@ public class CombatPlus extends JavaPlugin {
     public HashMap<String, String> spellSelected = new HashMap<>();
     public static IconMenu menu, raceselect, classselect, skilltree;
     private static CombatPlus instance;
-    private static Player p;
+    private static Races r;
+    private static Classes c;
     
     @Override
     public void onEnable(){
@@ -69,7 +75,13 @@ public class CombatPlus extends JavaPlugin {
 			public void onOptionClick(OptionClickEvent event) {
 				
 				event.setWillClose(true);
-				classselect.open(p);
+				
+				if(event.getName().equals("Elf")) r = Races.ELF;
+				else if(event.getName().equals("Dwarf")) r = Races.DWARF;
+				else if(event.getName().equals("Human")) r = Races.HUMAN;
+				else r = Races.HUMAN;
+				
+				classselect.open(event.getPlayer());
 				
 			}
 		}, this)
@@ -84,6 +96,13 @@ public class CombatPlus extends JavaPlugin {
 			public void onOptionClick(OptionClickEvent event) {
 				
 				event.setWillClose(true);
+				
+				if(event.getName().equals("Archer")) c = Classes.ARCHER;
+				else if(event.getName().equals("Warrior")) c = Classes.WARRIOR;
+				else if(event.getName().equals("Mage")) c = Classes.MAGE;
+				else c = Classes.WARRIOR;
+				
+				MetaPlayer mp = new MetaPlayer(event.getPlayer(), SkillTree.generateSkillTree(), new com.Github.Malatak1.CombatPlus.Player.Class(c), new Race(r));
 				
 			}
 		}, this)
@@ -120,7 +139,6 @@ public class CombatPlus extends JavaPlugin {
     }
     
     public static void openCharacterCustomizer(Player player){
-    	p = player;
     	raceselect.open(player);
     }
     

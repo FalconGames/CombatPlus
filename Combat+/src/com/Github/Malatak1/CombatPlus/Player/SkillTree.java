@@ -12,7 +12,7 @@ public class SkillTree {
 		
 	}
 	
-	public SkillTree generateSkillTree(){
+	public static SkillTree generateSkillTree(){
 		
 		Skill[] skills = new Skill[5];
 		skills[0] = new Skill(Skill.Skills.ATTACK_DAMAGE);

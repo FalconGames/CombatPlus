@@ -2,7 +2,7 @@ package com.Github.Malatak1.CombatPlus.Player;
 
 public class Race {
 
-	enum Races{
+	public enum Races{
 		
 		ELF, DWARF, HUMAN;
 		

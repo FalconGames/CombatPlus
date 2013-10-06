@@ -2,7 +2,7 @@ package com.Github.Malatak1.CombatPlus.Player;
 
 public class Class {
 
-	enum Classes{
+	public enum Classes{
 		
 		WARRIOR, MAGE, ARCHER;
 		
