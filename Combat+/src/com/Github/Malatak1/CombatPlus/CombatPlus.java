@@ -85,7 +85,7 @@ public class CombatPlus extends JavaPlugin {
     	.setOption(15, new ItemStack(Material.WEB, 1), "Entangle", "Trap your enemy in the strands of a magical web.")
     	.setOption(16, new ItemStack(Material.ARROW, 1), "Magical Barrage", "Shoot your enemies with a powerful volley of magical darts.");
     	
-    	raceselect = new IconMenu("Character Customizer: Pick your race!", 3, new IconMenu.OptionClickEventHandler() {
+    	raceselect = new IconMenu("Character Customizer: Pick your race!", 9, new IconMenu.OptionClickEventHandler() {
 			
 			@Override
 			public void onOptionClick(OptionClickEvent event) {
@@ -102,11 +102,11 @@ public class CombatPlus extends JavaPlugin {
 			}
 		}, this)
     	
-    	.setOption(0, new ItemStack(Material.WRITTEN_BOOK, 1), "Elf", "Fast and Wise, the Elf is gifted in magical abilities.")
-    	.setOption(1, new ItemStack(Material.DIAMOND_AXE, 1), "Dwarf", "Strongest of all races, the Dwarf excels in combat.")
-    	.setOption(2, new ItemStack(Material.WORKBENCH, 1), "Human", "Craftier than others, the Human is a natural survivalist.");
+    	.setOption(4, new ItemStack(Material.WRITTEN_BOOK, 1), "Elf", "Fast and Wise, the Elf is gifted in magical abilities.")
+    	.setOption(5, new ItemStack(Material.DIAMOND_AXE, 1), "Dwarf", "Strongest of all races, the Dwarf excels in combat.")
+    	.setOption(6, new ItemStack(Material.WORKBENCH, 1), "Human", "Craftier than others, the Human is a natural survivalist.");
     	
-    	classselect = new IconMenu("Character Customizer: Pick your class!", 3, new IconMenu.OptionClickEventHandler() {
+    	classselect = new IconMenu("Character Customizer: Pick your class!", 9, new IconMenu.OptionClickEventHandler() {
 			
 			@Override
 			public void onOptionClick(OptionClickEvent event) {
@@ -116,7 +116,7 @@ public class CombatPlus extends JavaPlugin {
 				if(event.getName().equals("Archer")) c = Classes.ARCHER;
 				else if(event.getName().equals("Warrior")) c = Classes.WARRIOR;
 				else if(event.getName().equals("Mage")) c = Classes.MAGE;
-				else c = Classes.WARRIOR;
+				else c = Classes.ADMIN;
 
 				MetaPlayers.add(new MetaPlayer(event.getPlayer(), SkillTree.generateSkillTree(), new com.Github.Malatak1.CombatPlus.Player.Class(c), new Race(r)));
 				try {
@@ -132,9 +132,10 @@ public class CombatPlus extends JavaPlugin {
 			}
 		}, this)
     	
-    	.setOption(0, new ItemStack(Material.BOW, 1), "Archer", "A skilled bowman.")
-    	.setOption(1, new ItemStack(Material.DIAMOND_SWORD, 1), "Warrior", "A strong fighter.")
-    	.setOption(2, new ItemStack(Material.BLAZE_ROD, 1), "Mage", "A powerful wizard.");
+    	.setOption(4, new ItemStack(Material.BOW, 1), "Archer", "A skilled bowman.")
+    	.setOption(5, new ItemStack(Material.DIAMOND_SWORD, 1), "Warrior", "A strong fighter.")
+    	.setOption(6, new ItemStack(Material.BLAZE_ROD, 1), "Mage", "A powerful wizard.")
+    	.setOption(9, new ItemStack(Material.AIR, 1));
     	
     	Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new Regenerator(), 100, 40);
     	

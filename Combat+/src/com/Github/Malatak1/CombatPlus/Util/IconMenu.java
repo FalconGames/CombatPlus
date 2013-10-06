@@ -39,6 +39,12 @@ public class IconMenu implements Listener {
         optionIcons[position] = setItemNameAndLore(icon, name, info);
         return this;
     }
+    
+    public IconMenu setOption(int position, ItemStack icon) {
+        optionNames[position] = name;
+        optionIcons[position] = null;
+        return this;
+    }
    
     public void open(Player player) {
         Inventory inventory = Bukkit.createInventory(player, size, name);
