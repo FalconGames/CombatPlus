@@ -2,9 +2,9 @@ package com.Github.Malatak1.CombatPlus.Player;
 
 public class Skill {
 
-	enum Skills{
+	public static enum Skills{
 		
-		ATTACK_DAMAGE, SPEED, DEFENSE, ENDURANCE, ENERGY_COLLECTION //Defense = reduced damage, Endurance = increased max mana, Energy collection = mana regeneration rate
+		ATTACK_DAMAGE, SPEED, DEFENSE, ENDURANCE, ENERGY_COLLECTION
 		
 	}
 	

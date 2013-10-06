@@ -26,7 +26,9 @@ import com.Github.Malatak1.CombatPlus.Util.IconMenu.OptionClickEvent;
 import com.Github.Malatak1.CombatPlus.Player.Class.Classes;
 import com.Github.Malatak1.CombatPlus.Player.MetaPlayer;
 import com.Github.Malatak1.CombatPlus.Player.Race;
+import com.Github.Malatak1.CombatPlus.Player.Skill;
 import com.Github.Malatak1.CombatPlus.Player.Race.Races;
+import com.Github.Malatak1.CombatPlus.Player.Skill.Skills;
 import com.Github.Malatak1.CombatPlus.Player.SkillTree;
 import com.Github.Malatak1.CombatPlus.Runnables.Regenerator;
 
@@ -136,6 +138,33 @@ public class CombatPlus extends JavaPlugin {
     	.setOption(5, new ItemStack(Material.DIAMOND_SWORD, 1), "Warrior", "A strong fighter.")
     	.setOption(6, new ItemStack(Material.BLAZE_ROD, 1), "Mage", "A powerful wizard.")
     	.setOption(9, new ItemStack(Material.AIR, 1));
+    	
+    	skilltree = new IconMenu("Player Skills", 9, new IconMenu.OptionClickEventHandler() {
+			
+			@Override
+			public void onOptionClick(OptionClickEvent event) {
+				
+				event.setWillClose(true);
+				
+				if(event.getName().equals("Speed")) getPlayerMeta(event.getPlayer()).levelUpSkill(Skills.SPEED);
+				if(event.getName().equals("Attack Damage")) getPlayerMeta(event.getPlayer()).levelUpSkill(Skills.ATTACK_DAMAGE);
+				if(event.getName().equals("Defense")) getPlayerMeta(event.getPlayer()).levelUpSkill(Skills.DEFENSE);
+				if(event.getName().equals("Endurance")) getPlayerMeta(event.getPlayer()).levelUpSkill(Skills.ENDURANCE);
+				if(event.getName().equals("Energy Collection Rate")) getPlayerMeta(event.getPlayer()).levelUpSkill(Skills.ENERGY_COLLECTION);
+				
+				if(getPlayerMeta(event.getPlayer()).getSkillPoints() >= 1){
+					getPlayerMeta(event.getPlayer()).reduceSkillPoints();
+					skilltree.open(event.getPlayer(), "Player Skills: " + getPlayerMeta(event.getPlayer()).getSkillPoints() + " skill points remaining!");
+				}
+
+			}
+		}, this)
+    	
+    	.setOption(3, new ItemStack(Material.LEATHER_BOOTS, 1), "Speed", "Run and walk faster.")
+    	.setOption(4, new ItemStack(Material.DIAMOND_SWORD, 1), "Attack Damage", "Hit harder.")
+    	.setOption(5, new ItemStack(Material.DIAMOND_CHESTPLATE, 1), "Defense", "Reduce damage taken.")
+    	.setOption(6, new ItemStack(Material.POTION, 1), "Endurance", "Increase mana and energy.")
+    	.setOption(7, new ItemStack(Material.REDSTONE, 1), "Energy Collection Rate", "Regenerate mana more quickly.");
     	
     	Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new Regenerator(), 100, 40);
     	
