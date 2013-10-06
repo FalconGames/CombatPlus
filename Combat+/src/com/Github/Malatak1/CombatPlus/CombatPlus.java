@@ -1,10 +1,16 @@
 package com.Github.Malatak1.CombatPlus;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.List;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.block.Block;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -32,8 +38,10 @@ public class CombatPlus extends JavaPlugin {
     private static CombatPlus instance;
     private static Races r;
     private static Classes c;
+    private List<MetaPlayer> MetaPlayers = new ArrayList<MetaPlayer>();
     
-    @Override
+    @SuppressWarnings("unchecked")
+	@Override
     public void onEnable(){
     	
     	instance = this;
@@ -42,6 +50,15 @@ public class CombatPlus extends JavaPlugin {
     	getServer().getPluginManager().registerEvents(new SneakListener(), this);
     	getServer().getPluginManager().registerEvents(new PlayerInteractListener(spellSelected), this);
     	getServer().getPluginManager().registerEvents(new EntityDamageByEntityListener(), this);
+    	
+    	try {
+			FileInputStream fis = new FileInputStream("MetaPlayers.txt");
+			ObjectInputStream ois = new ObjectInputStream(fis);
+			MetaPlayers = (List<MetaPlayer>) ois.readObject();
+			ois.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
     	
     	menu = new IconMenu("Known Spells", 27, new IconMenu.OptionClickEventHandler() {
             @Override
@@ -101,8 +118,17 @@ public class CombatPlus extends JavaPlugin {
 				else if(event.getName().equals("Warrior")) c = Classes.WARRIOR;
 				else if(event.getName().equals("Mage")) c = Classes.MAGE;
 				else c = Classes.WARRIOR;
-				
-				MetaPlayer mp = new MetaPlayer(event.getPlayer(), SkillTree.generateSkillTree(), new com.Github.Malatak1.CombatPlus.Player.Class(c), new Race(r));
+
+				MetaPlayers.add(new MetaPlayer(event.getPlayer(), SkillTree.generateSkillTree(), new com.Github.Malatak1.CombatPlus.Player.Class(c), new Race(r)));
+				try {
+					FileOutputStream fos = new FileOutputStream("MetaPlayers.txt");
+					ObjectOutputStream oos = new ObjectOutputStream(fos);
+					oos.writeObject(MetaPlayers);
+					oos.close();
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 				
 			}
 		}, this)
