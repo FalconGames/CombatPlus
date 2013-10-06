@@ -1,7 +1,6 @@
 package com.Github.Malatak1.CombatPlus;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -38,7 +37,7 @@ public class CombatPlus extends JavaPlugin {
     private static CombatPlus instance;
     private static Races r;
     private static Classes c;
-    private List<MetaPlayer> MetaPlayers = new ArrayList<MetaPlayer>();
+    private static List<MetaPlayer> MetaPlayers = new ArrayList<MetaPlayer>();
     
     @SuppressWarnings("unchecked")
 	@Override
@@ -170,6 +169,21 @@ public class CombatPlus extends JavaPlugin {
     
     public static void openCharacterCustomizer(Player player){
     	raceselect.open(player);
+    }
+    
+    public static MetaPlayer getPlayerMeta(Player p){
+		
+    	while(true){
+    		for(int i = 0; i < MetaPlayers.size(); i++){
+    		
+    			if(MetaPlayers.get(i).getPlayer().equals(p)) return MetaPlayers.get(i);
+    		
+    		}
+    	
+    		openCharacterCustomizer(p);
+    	
+    	}
+    	
     }
     
 }

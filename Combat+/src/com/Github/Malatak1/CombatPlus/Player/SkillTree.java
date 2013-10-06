@@ -1,7 +1,5 @@
 package com.Github.Malatak1.CombatPlus.Player;
 
-import com.Github.Malatak1.CombatPlus.Player.Skill.Skills;
-
 public class SkillTree {
 
 	Skill[] skills;

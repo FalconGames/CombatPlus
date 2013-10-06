@@ -34,4 +34,22 @@ public class MetaPlayer implements Serializable{
 		
 	}
 	
+	public Player getPlayer(){
+		
+		return p;
+		
+	}
+	
+	public Class getPlayerClass(){
+		
+		return c;
+		
+	}
+	
+	public Race getPlayerRace(){
+		
+		return r;
+		
+	}
+	
 }
