@@ -156,6 +156,10 @@ public class CombatPlus extends JavaPlugin {
     		sender.sendMessage("Selected spell: " + spellSelected.get(sender.getName()));
     		return true;
     	}
+    	if(cmd.getName().equalsIgnoreCase("customize")){
+    		openCharacterCustomizer((Player)sender);
+    		return true;
+    	}
     	return false; 
     }
     
