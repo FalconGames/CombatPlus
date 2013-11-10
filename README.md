@@ -7,9 +7,15 @@ Features
 ========
 
 -Better crits
+
 -Faster sprint
+
 -Class/Race system
+
 -Skill tree
+
 -Magic spells
+
 -Mana storage system
+
 -API
